@@ -20,11 +20,11 @@ const contactsSlice = createSlice({
         };
       },
     },
-    deleteContact(state, { payload }) {
+    delContact(state, { payload }) {
       return state.filter(contact => contact.id !== payload);
     },
   },
 });
 
-export const { addContact, deleteContact } = contactsSlice.actions;
+export const { addContact, delContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
