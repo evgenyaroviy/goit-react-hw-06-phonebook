@@ -14,14 +14,13 @@ export const Filter = () => {
 
   return contacts.length !== 0 ? (
     <div>
-      <label htmlFor="filter">Find contacts by name:
+      <label style={{marginLeft: '30px'}}>Find contacts by name:
       <input
-        id="filter"
         type="text"
         name="filter"
         onChange={handleFilterChange}
               />
-              </label>
+        </label>
     </div>
   ) : (
     <NotificationMessage />
