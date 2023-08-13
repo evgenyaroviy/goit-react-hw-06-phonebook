@@ -1,24 +1,28 @@
-import PropTypes from "prop-types";
-import { NotificationMessage } from "../NotificationMessage/NotificationMessage";
+import { NotificationMessage } from '../NotificationMessage/NotificationMessage';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from '../redux/selectors';
+import { filterContacts } from '../redux/filtersSlice';
 
-export const Filter = ({ contacts, filtered, onChangeFilter }) => {
-    return contacts.length !== 0 ?
-        (
-            <label style={{ marginLeft: '30px' }}>
-                Find contacts by name
-                <input
-                    type="text"
-                    value={filtered}
-                    onChange={onChangeFilter} />
-            </label>
-        ) :
-        (
-            <NotificationMessage />
-        )
-}
+export const Filter = () => {
+  const contacts = useSelector(getContacts)
+  const dispatch = useDispatch()
 
-Filter.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  filtered: PropTypes.string,
-  onChangeFilter: PropTypes.func.isRequired,
+  const handleFilter = e => {
+    dispatch(filterContacts(e.target.value.toLowerCase().trim()));
+  }
+
+  return contacts.length !== 0 ? (
+    <div>
+      <label htmlFor="filter">Find contacts by name:
+      <input
+        id="filter"
+        type="text"
+        name="filter"
+        onChange={handleFilter}
+              />
+              </label>
+    </div>
+  ) : (
+    <NotificationMessage />
+  );
 };
