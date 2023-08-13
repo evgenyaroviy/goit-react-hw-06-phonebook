@@ -11,7 +11,6 @@ import { getContacts } from "components/redux/selectors";
     e.preventDefault();
      const form = e.target;
      const name = form.elements.name.value;
-     console.log(name);
      const number = form.elements.number.value;
 
      const contactExists = contacts.some(contact => contact.name === name);
